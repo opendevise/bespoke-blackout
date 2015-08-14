@@ -1,0 +1,98 @@
+* {
+  -moz-box-sizing: inherit;
+       box-sizing: inherit;
+}
+
+html {
+  -moz-box-sizing: border-box;
+       box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+}
+
+h1, p {
+  margin: 0.5em 0;
+}
+
+#presentation {
+  font-family: Arial, sans-serif;
+  font-size: 2em;
+  line-height: 1.6;
+  color: #303030;
+  /* enable kerning using forward-compatible CSS */
+  text-rendering: optimizeLegibility;
+  font-feature-settings: "kern" 1;
+  font-kerning: normal;
+  visibility: hidden;
+}
+
+#presentation section {
+  /* hide until bespoke classes are added; also prevents transitions during load */
+  display: none;
+}
+
+#presentation.bespoke-parent {
+  position: absolute;
+  top: 0;
+  left: 0;
+
+  /*
+  right: 0;
+  bottom: 0;
+  */
+  /* ...or use view sizes */
+  width: 100vw;
+  height: 100vh;
+
+  overflow: hidden;
+  visibility: visible;
+  transition: opacity 1s ease 0s;
+}
+
+.bespoke-parent.bespoke-paused {
+  opacity: 0;
+}
+
+#presentation .bespoke-slide {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 640px;
+  margin-left: -320px;
+  height: 360px;
+  margin-top: -180px;
+  display: -webkit-flex;
+  display: flex;
+  -webkit-align-items: center;
+          align-items: center;
+  -webkit-justify-content: center;
+          justify-content: center;
+  -webkit-flex-direction: column;
+          flex-direction: column;
+  padding: 1em;
+  /* use box shadow to indicate edge of slide in demo */
+  box-shadow: 0 0 10px rgba(0,0,0,0.25);
+  -webkit-transition: transform .3s ease, opacity .3s ease;
+     -moz-transition: transform .3s ease, opacity .3s ease;
+       -o-transition: transform .3s ease, opacity .3s ease;
+          transition: transform .3s ease, opacity .3s ease;
+
+  /* force opacity to start at 0 to avoid transition on load when using bespoke-scale */
+  opacity: 0;
+  visibility: visible;
+}
+
+#presentation .bespoke-inactive {
+  /* setting opacity here is redundant */
+  /*opacity: 0;*/
+  /* don't let pointer events get trapped by inactive slides */
+  pointer-events: none;
+}
+
+#presentation .bespoke-active {
+  opacity: 1;
+  /* ensure current slide is on the top; hmmm...don't seem to work */
+  /*z-index: 1;*/
+}
