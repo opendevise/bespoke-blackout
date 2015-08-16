@@ -1,7 +1,7 @@
 {
   "name": "bespoke-breather",
   "version": "1.0.0",
-  "description": "Pause a bespoke.js presentation and give your audience a breather",
+  "description": "Pause a bespoke.js presentation and give your audience a breather.",
   "homepage": "https://github.com/opendevise/bespoke-breather",
   "bugs": "https://github.com/opendevise/bespoke-breather/issues",
   "author": {
