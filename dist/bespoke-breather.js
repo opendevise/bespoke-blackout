@@ -12,7 +12,6 @@ module.exports = function() {
     var KEYCODE_B = 66,
       KEYCODE_PERIOD = 190,
       paused = false,
-
       pause = function(toState) {
         var parentClasses = deck.parent.classList;
         if (toState === false) {
@@ -28,26 +27,22 @@ module.exports = function() {
           }
         }
       },
-
       next = function() {
         return !paused;
       },
-
       prev = function() {
         return !paused;
       },
-
-      dispatcher = function(e) {
+      keydownHandler = function(e) {
         if (e.which === KEYCODE_B || e.which === KEYCODE_PERIOD) {
           pause(!paused);
         }
       },
-
       destroy = function() {
-        document.removeEventListener('keydown', dispatcher, false);
+        document.removeEventListener('keydown', keydownHandler, false);
       };
 
-    document.addEventListener('keydown', dispatcher, false);
+    document.addEventListener('keydown', keydownHandler, false);
 
     deck.on('next', next);
     deck.on('prev', prev);
