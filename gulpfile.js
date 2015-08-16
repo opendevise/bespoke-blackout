@@ -24,7 +24,7 @@ gulp.task('watch', function() {
 });
 
 gulp.task('clean', function() {
-  return gulp.src(['dist', 'test/coverage'], { read: false })
+  return gulp.src(['dist', 'lib-instrumented', 'test/coverage'], { read: false })
     .pipe(clean());
 });
 
@@ -34,6 +34,7 @@ gulp.task('lint', function() {
     .pipe(jshint.reporter('jshint-stylish'));
 });
 
+//gulp.task('instrument', ['clean'], function() {
 gulp.task('instrument', function() {
   return gulp.src('lib/**/*.js')
     .pipe(map(function(code, filename) {
