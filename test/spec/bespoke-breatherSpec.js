@@ -1,12 +1,12 @@
+Function.prototype.bind = Function.prototype.bind || require('function-bind');
+
+var simulant = require('simulant'),
+  bespoke = require('bespoke'),
+  classes = require('bespoke-classes'),
+  keys = require('bespoke-keys'),
+  breather = require('../../lib/bespoke-breather.js');
+
 describe("bespoke-breather", function() {
-
-  Function.prototype.bind = Function.prototype.bind || require('function-bind');
-
-  var simulant = require('simulant'),
-    bespoke = require('bespoke'),
-    classes = require('bespoke-classes'),
-    keys = require('bespoke-keys'),
-    breather = require('../../lib-instrumented/bespoke-breather.js');
 
   var deck,
     createDeck = function() {

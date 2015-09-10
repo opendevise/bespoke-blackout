@@ -1,19 +1,14 @@
 var gulp = require('gulp'),
-  clean = require('gulp-clean'),
-  jshint = require('gulp-jshint'),
-  map = require('vinyl-map'),
-  istanbul = require('istanbul'),
-  karma = require('gulp-karma'),
-  coveralls = require('gulp-coveralls'),
-  header = require('gulp-header'),
-  rename = require('gulp-rename'),
-  uglify = require('gulp-uglify'),
   pkg = require('./package.json'),
   browserify = require('browserify'),
-  source = require('vinyl-source-stream'),
   buffer = require('vinyl-buffer'),
-  path = require('path'),
-  template = require('lodash').template;
+  del = require('del'),
+  header = require('gulp-header'),
+  jshint = require('gulp-jshint'),
+  karma = require('karma'),
+  rename = require('gulp-rename'),
+  source = require('vinyl-source-stream'),
+  uglify = require('gulp-uglify');
 
 gulp.task('default', ['clean', 'lint', 'test', 'compile']);
 gulp.task('dev', ['compile', 'lint', 'test', 'watch']);
@@ -23,9 +18,8 @@ gulp.task('watch', function() {
   gulp.watch('test/spec/**/*.js', ['test']);
 });
 
-gulp.task('clean', function() {
-  return gulp.src(['dist', 'lib-instrumented', 'test/coverage'], { read: false })
-    .pipe(clean());
+gulp.task('clean', function(done) {
+  del(['dist', 'test/coverage'], done);
 });
 
 gulp.task('lint', function() {
@@ -34,48 +28,34 @@ gulp.task('lint', function() {
     .pipe(jshint.reporter('jshint-stylish'));
 });
 
-//gulp.task('instrument', ['clean'], function() {
-gulp.task('instrument', function() {
-  return gulp.src('lib/**/*.js')
-    .pipe(map(function(code, filename) {
-      var instrumenter = new istanbul.Instrumenter(),
-        relativePath = path.relative(__dirname, filename);
-      return instrumenter.instrumentSync(code.toString(), relativePath);
-    }))
-    .pipe(gulp.dest('lib-instrumented'));
-});
-
-gulp.task('test', ['instrument'], function() {
-  return gulp.src(['test/spec/*Spec.js'])
-    .pipe(karma({ configFile: 'karma.conf.js' }));
-});
-
-gulp.task('coveralls', ['test'], function() {
-  return gulp.src(['test/coverage/**/lcov.info'])
-    .pipe(coveralls());
+gulp.task('test', function(done) {
+  new karma.Server({
+    configFile: __dirname + '/karma.conf.js',
+    singleRun: true
+  }, done).start();
 });
 
 gulp.task('compile', ['clean'], function() {
-  return browserify('./lib/bespoke-breather.js')
-    .bundle({ standalone: 'bespoke.plugins.breather' })
+  return browserify({ standalone: 'bespoke.plugins.breather' })
+    .add('./lib/bespoke-breather.js')
+    .bundle()
     .pipe(source('bespoke-breather.js'))
     .pipe(buffer())
-    .pipe(header(template([
+    .pipe(header([
       '/*!',
       ' * <%= name %> v<%= version %>',
       ' *',
       ' * Copyright <%= new Date().getFullYear() %>, <%= author.name %>',
-      ' * This content is released under the <%= licenses[0].type %> license',
-      ' * <%= licenses[0].url %>',
+      ' * This content is released under the <%= license %> license',
       ' */\n\n'
-    ].join('\n'), pkg)))
+    ].join('\n'), pkg))
     .pipe(gulp.dest('dist'))
     .pipe(rename('bespoke-breather.min.js'))
     .pipe(uglify())
-    .pipe(header(template([
+    .pipe(header([
       '/*! <%= name %> v<%= version %> ',
       '© <%= new Date().getFullYear() %> <%= author.name %>, ',
-      '<%= licenses[0].type %> License */\n'
-    ].join(''), pkg)))
+      '<%= license %> License */\n'
+    ].join(''), pkg))
     .pipe(gulp.dest('dist'));
 });

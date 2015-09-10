@@ -4,39 +4,14 @@ Dan Allen
 :idseparator: -
 :experimental:
 
-Toggles pause mode when either the kbd:[b] or kbd:[.] key is pressed while giving a http://markdalgleish.com/projects/bespoke.js[bespoke.js] presentation.
+Toggles pause mode when either the kbd:[b] or kbd:[.] key is pressed while giving a http://markdalgleish.com/projects/bespoke.js[Bespoke.js] presentation.
 Give your audience a breather.
 
 TIP: If you have form elements in your slides, use the https://github.com/markdalgleish/bespoke-forms[bespoke-forms] plugin to prevent pause mode toggle from being triggered while typing.
 
 == Download
 
-Download the https://raw.github.com/opendevise/bespoke-breather/master/dist/bespoke-breather.min.js[production version] or the https://raw.github.com/opendevise/bespoke-breather/master/dist/bespoke-breather.js[development version], or use a <<package-managers,package manager>>.
-
-== Usage
-
-This plugin is shipped in a https://github.com/umdjs/umd[UMD format], meaning that it is available as a CommonJS/AMD module or browser global.
-
-For example, when using CommonJS modules:
-
-```js
-var bespoke = require('bespoke'),
-  breather = require('bespoke-breather');
-
-bespoke.from('#presentation', [
-  breather()
-]);
-```
-
-When using browser globals:
-
-```js
-bespoke.from('#presentation', [
-  bespoke.plugins.breather()
-]);
-```
-
-== Package managers
+Download the https://raw.github.com/opendevise/bespoke-breather/master/dist/bespoke-breather.min.js[production version] or the https://raw.github.com/opendevise/bespoke-breather/master/dist/bespoke-breather.js[development version], or use a package manager.
 
 === npm
 
@@ -50,9 +25,28 @@ $ npm install bespoke-breather
 $ bower install bespoke-breather
 ```
 
-== Credits
+== Usage
 
-This plugin was built with https://github.com/markdalgleish/generator-bespokeplugin[generator-bespokeplugin].
+This plugin is shipped in a https://github.com/umdjs/umd[UMD format], meaning that it is available as a CommonJS/AMD module or browser global.
+
+For example, when using CommonJS modules:
+
+```js
+var bespoke = require('bespoke'),
+  breather = require('bespoke-breather');
+
+bespoke.from('.deck', [
+  breather()
+]);
+```
+
+When using browser globals:
+
+```js
+bespoke.from('.deck', [
+  bespoke.plugins.breather()
+]);
+```
 
 == License
 
