@@ -36,10 +36,10 @@ gulp.task('test', function(done) {
 });
 
 gulp.task('compile', ['clean'], function() {
-  return browserify({ standalone: 'bespoke.plugins.breather' })
-    .add('./lib/bespoke-breather.js')
+  return browserify({ standalone: 'bespoke.plugins.blackout' })
+    .add('./lib/bespoke-blackout.js')
     .bundle()
-    .pipe(source('bespoke-breather.js'))
+    .pipe(source('bespoke-blackout.js'))
     .pipe(buffer())
     .pipe(header([
       '/*!',
@@ -50,7 +50,7 @@ gulp.task('compile', ['clean'], function() {
       ' */\n\n'
     ].join('\n'), pkg))
     .pipe(gulp.dest('dist'))
-    .pipe(rename('bespoke-breather.min.js'))
+    .pipe(rename('bespoke-blackout.min.js'))
     .pipe(uglify())
     .pipe(header([
       '/*! <%= name %> v<%= version %> ',

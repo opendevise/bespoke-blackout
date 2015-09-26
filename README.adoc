@@ -1,42 +1,63 @@
-= bespoke-breather
-Dan Allen
+= bespoke-blackout
+Dan Allen <https://github.com/mojavelinux>
+// Settings:
 :idprefix:
 :idseparator: -
 :experimental:
+//ifdef::env-github[:badges:]
+// Variables:
+:release-version: master
+// URIs:
+:uri-raw-file-base: https://raw.githubusercontent.com/opendevise/bespoke-blackout/{release-version}
 
-Toggles pause mode when either the kbd:[b] or kbd:[.] key is pressed while giving a http://markdalgleish.com/projects/bespoke.js[Bespoke.js] presentation.
+ifdef::badges[]
+image:https://img.shields.io/npm/v/bespoke-blackout.svg[npm package, link=https://www.npmjs.com/package/bespoke-blackout]
+image:https://img.shields.io/travis/opendevise/bespoke-blackout/master.svg[Build Status (Travis CI), link=https://travis-ci.org/opendevise/bespoke-blackout]
+endif::[]
+
+Toggles blackout mode when either the kbd:[b] or kbd:[.] key is pressed in a http://markdalgleish.com/projects/bespoke.js[Bespoke.js] presentation.
 Give your audience a breather.
 
 TIP: If you have form elements in your slides, use the https://github.com/markdalgleish/bespoke-forms[bespoke-forms] plugin to prevent pause mode toggle from being triggered while typing.
+== Example
+
+//http://opendevise.github.io/bespoke-blackout[View the demo] online.
+
+This repository includes a demo folder the shows this plugin in action.
+To view it locally, you first need to clone this repository:
+
+ $ git clone https://github.com/opendevise/bespoke-blackout && cd bespoke-blackout
+
+Next, install the dependencies inside the project folder using npm:
+
+ $ npm install
+
+Finally, visit the file [path]_demo/index.html_ in your browser to see the plugin in action.
 
 == Download
 
-Download the https://raw.github.com/opendevise/bespoke-breather/master/dist/bespoke-breather.min.js[production version] or the https://raw.github.com/opendevise/bespoke-breather/master/dist/bespoke-breather.js[development version], or use a package manager.
+Download the {uri-raw-file-base}/dist/bespoke-blackout.min.js[production version] or the {uri-raw-file-base}/dist/bespoke-blackout.js[development version], or use a package manager.
 
 === npm
 
-```bash
-$ npm install bespoke-breather
-```
+ $ npm install bespoke-blackout
 
 === Bower
 
-```bash
-$ bower install bespoke-breather
-```
+ $ bower install bespoke-blackout
 
 == Usage
 
-This plugin is shipped in a https://github.com/umdjs/umd[UMD format], meaning that it is available as a CommonJS/AMD module or browser global.
+This plugin is shipped in a https://github.com/umdjs/umd[UMD format], meaning it is available as a CommonJS/AMD module or as a browser global.
 
 For example, when using CommonJS modules:
 
 ```js
 var bespoke = require('bespoke'),
-  breather = require('bespoke-breather');
+  blackout = require('bespoke-blackout');
 
 bespoke.from('.deck', [
-  breather()
+  blackout()
 ]);
 ```
 
@@ -44,9 +65,23 @@ When using browser globals:
 
 ```js
 bespoke.from('.deck', [
-  bespoke.plugins.breather()
+  bespoke.plugins.blackout()
 ]);
 ```
+
+=== Behavior
+
+This plugin activates the following keybindings:
+
+[width=50%]
+|===
+|Function |Shortcut(s)
+
+|Blackout
+|kbd:[b], kbd:[.]
+|===
+
+NOTE: These keybindings are not triggered if a modifier key (e.g., kbd:[Ctrl]) is pressed.
 
 == License
 

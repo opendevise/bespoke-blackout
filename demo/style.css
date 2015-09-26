@@ -44,7 +44,7 @@ h1, p {
   transition: opacity 1s ease 0s;
 }
 
-.bespoke-parent.bespoke-paused {
+.bespoke-parent.bespoke-blackout {
   opacity: 0;
 }
 

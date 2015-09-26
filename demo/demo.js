@@ -1,7 +1,7 @@
 var deck = bespoke.from('.deck', [
   bespoke.plugins.classes(),
   bespoke.plugins.keys(),
-  bespoke.plugins.breather(),
+  bespoke.plugins.blackout(),
   bespoke.plugins.forms()
 ]);
 

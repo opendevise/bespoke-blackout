@@ -1,17 +1,17 @@
 {
-  "name": "bespoke-breather",
+  "name": "bespoke-blackout",
   "version": "1.0.0-dev",
-  "description": "Pause a bespoke.js presentation and give your audience a breather.",
-  "homepage": "https://github.com/opendevise/bespoke-breather",
-  "bugs": "https://github.com/opendevise/bespoke-breather/issues",
+  "description": "Blackout a Bespoke.js presentation to give your audience a breather.",
+  "homepage": "https://github.com/opendevise/bespoke-blackout",
+  "bugs": "https://github.com/opendevise/bespoke-blackout/issues",
   "author": {
     "name": "Dan Allen",
     "url": "https://github.com/mojavelinux"
   },
-  "main": "./lib/bespoke-breather.js",
+  "main": "./lib/bespoke-blackout.js",
   "repository": {
     "type": "git",
-    "url": "git://github.com/opendevise/bespoke-breather.git"
+    "url": "git://github.com/opendevise/bespoke-blackout.git"
   },
   "scripts": {
     "test": "gulp"
@@ -22,7 +22,7 @@
   "devDependencies": {
     "bespoke": "^1.0.0",
     "bespoke-classes": "^1.0.0",
-    "bespoke-keys": "^1.0.0",
+    "bespoke-keys": "^1.1.0",
     "bespoke-forms": "^1.0.0",
     "browserify": "^11.0.1",
     "browserify-istanbul": "^0.2.1",

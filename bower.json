@@ -1,6 +1,6 @@
 {
-  "name": "bespoke-breather",
-  "main": "./dist/bespoke-breather.js",
+  "name": "bespoke-blackout",
+  "main": "./dist/bespoke-blackout.js",
   "ignore": [
     "**/.*"
   ],
