@@ -22,16 +22,19 @@
   "devDependencies": {
     "bespoke": "^1.0.0",
     "bespoke-classes": "^1.0.0",
-    "bespoke-keys": "^1.1.0",
     "bespoke-forms": "^1.0.0",
+    "bespoke-nav": "^1.0.1",
     "browserify": "^11.0.1",
     "browserify-istanbul": "^0.2.1",
     "del": "^1.2.0",
     "function-bind": "^1.0.2",
+    "gh-pages": "^0.3.1",
     "gulp": "^3.9.0",
+    "gulp-concat": "^2.6.0",
     "gulp-header": "^1.2.2",
     "gulp-jshint": "^1.11.2",
     "gulp-rename": "^1.2.2",
+    "gulp-replace": "^0.5.4",
     "gulp-uglify": "^1.2.0",
     "jshint-stylish": "^2.0.1",
     "karma": "^0.13.9",
@@ -53,5 +56,5 @@
   "keywords": [
     "bespoke-plugin"
   ],
-  "readme": ""
+  "readme": "# bespoke-blackout\n\nToggles blackout mode when either the `b` or `.` key is pressed in a [Bespoke.js](http://markdalgleish.com/projects/bespoke.js) presentation. Give your audience a breather.\n\n## Usage\n\nThis plugin is shipped in a [UMD format](https://github.com/umdjs/umd), meaning it is available as a CommonJS/AMD module or as a browser global.\n\nFor example, when using CommonJS modules:\n\n```js\nvar bespoke = require('bespoke'),\n  navkbd = require('bespoke-blackout');\n\nbespoke.from('.deck', [\n  blackout()\n]);\n```\n\nWhen using browser globals:\n\n```js\nbespoke.from('.deck', [\n  bespoke.plugins.blackout()\n]);\n```\n\nFor more information about options and how the plugin works, see the [complete README](https://github.com/opendevise/bespoke-blackout/blob/master/README.adoc).\n\n## License\n\n[MIT License](http://en.wikipedia.org/wiki/MIT_License)\n"
 }
