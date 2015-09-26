@@ -31,6 +31,24 @@ describe('bespoke-blackout', function() {
       simulant.fire((element || document), 'keydown', opts);
     };
 
+  describe('styles and overlay', function() {
+    beforeEach(createDeck);
+    afterEach(destroyDeck);
+
+    it('inserts CSS before the first child element of <head>', function() {
+      var style = document.head.querySelector('style');
+      expect(style).toBeDefined();
+      expect(style).not.toBeNull();
+      expect(style.textContent).toContain('.bespoke-blackout-overlay');
+    });
+
+    it('should add an blackout overlay element', function() {
+      var overlay = deck.parent.querySelector('.bespoke-blackout-overlay');
+      expect(overlay).toBeDefined();
+      expect(overlay).not.toBeNull();
+    });
+  });
+
   describe('toggle blackout', function() {
     beforeEach(createDeck);
     afterEach(destroyDeck);
