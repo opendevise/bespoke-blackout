@@ -3,7 +3,7 @@ Function.prototype.bind = Function.prototype.bind || require('function-bind');
 var simulant = require('simulant'),
   bespoke = require('bespoke'),
   classes = require('bespoke-classes'),
-  keys = require('bespoke-keys'),
+  nav = require('bespoke-nav'),
   blackout = require('../../lib/bespoke-blackout.js');
 
 describe('bespoke-blackout', function() {
@@ -17,7 +17,7 @@ describe('bespoke-blackout', function() {
       }
       deck = bespoke.from(parent, [
         classes(),
-        keys(),
+        nav(),
         blackout()
       ]);
     },
