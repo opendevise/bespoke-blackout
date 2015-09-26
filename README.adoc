@@ -19,6 +19,7 @@ Toggles blackout mode when either the kbd:[b] or kbd:[.] key is pressed in a htt
 Give your audience a breather.
 
 TIP: If you have form elements in your slides, use the https://github.com/markdalgleish/bespoke-forms[bespoke-forms] plugin to prevent pause mode toggle from being triggered while typing.
+
 == Example
 
 //http://opendevise.github.io/bespoke-blackout[View the demo] online.
