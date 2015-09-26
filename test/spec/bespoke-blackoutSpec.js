@@ -25,8 +25,10 @@ describe('bespoke-blackout', function() {
       deck.fire('destroy');
       deck = null;
     },
-    pressKey = function(which, element) {
-      simulant.fire((element || document), 'keydown', { which: KEY[which] || which });
+    pressKey = function(which, opts, element) {
+      opts = opts ? opts : {};
+      opts.which = KEY[which] || which;
+      simulant.fire((element || document), 'keydown', opts);
     };
 
   describe('toggle blackout', function() {
@@ -34,11 +36,17 @@ describe('bespoke-blackout', function() {
     afterEach(destroyDeck);
 
     ['b', 'dot'].forEach(function(key) {
-      it('should add the bespoke-blackout class to the parent when pressing ' + key, function() {
+      it('should add the bespoke-blackout class to parent when ' + key + ' is pressed', function() {
         expect(deck.parent.classList).not.toContain('bespoke-blackout');
         pressKey(key);
         expect(deck.parent.classList).toContain('bespoke-blackout');
         pressKey(key);
+        expect(deck.parent.classList).not.toContain('bespoke-blackout');
+      });
+
+      it('should not add bespoke-blackout class to parent when ' + key + ' and modifier is pressed', function() {
+        expect(deck.parent.classList).not.toContain('bespoke-blackout');
+        pressKey(key, { ctrlKey: true });
         expect(deck.parent.classList).not.toContain('bespoke-blackout');
       });
     });
