@@ -72,6 +72,10 @@ bespoke.from('.deck', [
 
 === Behavior
 
+The bespoke-blackout plugin adds an overlay div with the class `bespoke-blackout-overlay` when the presentation is loaded.
+When the blackout is toggled on, the plugin adds the `bespoke-blackout` class to the deck parent element.
+When the blackout is toggled off, the plugin removes this class.
+
 This plugin activates the following keybindings:
 
 [width=50%]
@@ -83,6 +87,40 @@ This plugin activates the following keybindings:
 |===
 
 NOTE: These keybindings are not triggered if a modifier key (e.g., kbd:[Ctrl]) is pressed.
+
+== Custom styles and transitions
+
+The bespoke-blackout plugin provides default styles that create a simple curtain when the blackout is toggled.
+These styles set the background color of the overlay to off-black and both its visibility and opacity.
+You can customize the built-in behavior by overriding these styles in your stylesheet.
+
+For instance, to add a fade-in transition to the curtain when it is toggled on, add the following CSS to your stylesheet:
+
+```css
+/* for transitioning to blackout */
+.bespoke-blackout .bespoke-blackout-overlay {
+  -webkit-transition: opacity 0.5s ease-in;
+          transition: opacity 0.5s ease-in;
+}
+
+/* for transitioning from blackout */
+.bespoke-blackout-overlay {
+  -webkit-transition: opacity 0.5s ease-in, visibility 0s linear 0.5s;
+          transition: opacity 0.5s ease-in, visibility 0s linear 0.5s;
+}
+```
+
+TIP: You can use transitions to create a real curtain effect, if that's the style you want.
+
+To change the color of the curtain, add the following CSS to your stylesheet:
+
+```css
+.bespoke-blackout-overlay {
+  background-color: #000000;
+}
+```
+
+TIP: In addition to setting the background, you could add an image (such as a coffee mug) to the overlay.
 
 == License
 
