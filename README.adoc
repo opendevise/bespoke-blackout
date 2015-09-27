@@ -1,6 +1,5 @@
 = bespoke-blackout
 Dan Allen <https://github.com/mojavelinux>
-v1.0.0, 2015-09-27
 // Settings:
 :idprefix:
 :idseparator: -

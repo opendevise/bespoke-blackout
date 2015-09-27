@@ -1,6 +1,6 @@
 {
   "name": "bespoke-blackout",
-  "version": "1.0.0",
+  "version": "1.0.1-dev",
   "description": "Blackout a Bespoke.js presentation to give your audience a breather.",
   "homepage": "https://github.com/opendevise/bespoke-blackout",
   "bugs": "https://github.com/opendevise/bespoke-blackout/issues",
