@@ -15,6 +15,7 @@ describe('bespoke-blackout', function() {
         var slide = document.createElement('section');
         parent.appendChild(slide);
       }
+      document.body.appendChild(parent);
       deck = bespoke.from(parent, [
         classes(),
         nav(),
@@ -23,6 +24,7 @@ describe('bespoke-blackout', function() {
     },
     destroyDeck = function() {
       deck.fire('destroy');
+      if (deck.parent.parentNode) deck.parent.parentNode.removeChild(deck.parent);
       deck = null;
     },
     pressKey = function(which, opts, element) {
@@ -62,11 +64,37 @@ describe('bespoke-blackout', function() {
         expect(deck.parent.classList).not.toContain('bespoke-blackout');
       });
 
+      it('should change the opacity of overlay from 0 to 1 when ' + key + ' is pressed', function() {
+        var overlay = deck.parent.querySelector('.bespoke-blackout-overlay');
+        expect(getComputedStyle(overlay).opacity).toBe('0');
+        pressKey(key);
+        expect(getComputedStyle(overlay).opacity).toBe('1');
+        pressKey(key);
+        expect(getComputedStyle(overlay).opacity).toBe('0');
+      });
+
+      it('should change the visibility of overlay from hidden to visible when ' + key + ' is pressed', function() {
+        var overlay = deck.parent.querySelector('.bespoke-blackout-overlay');
+        expect(getComputedStyle(overlay).visibility).toBe('hidden');
+        pressKey(key);
+        expect(getComputedStyle(overlay).visibility).toBe('visible');
+        pressKey(key);
+        expect(getComputedStyle(overlay).visibility).toBe('hidden');
+      });
+
       it('should not add bespoke-blackout class to parent when ' + key + ' and modifier is pressed', function() {
         expect(deck.parent.classList).not.toContain('bespoke-blackout');
         pressKey(key, { ctrlKey: true });
         expect(deck.parent.classList).not.toContain('bespoke-blackout');
       });
+    });
+
+    it('should toggle blackout when blackout event is fired', function() {
+      expect(deck.parent.classList).not.toContain('bespoke-blackout');
+      deck.fire('blackout');
+      expect(deck.parent.classList).toContain('bespoke-blackout');
+      deck.fire('blackout');
+      expect(deck.parent.classList).not.toContain('bespoke-blackout');
     });
   });
 
