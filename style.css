@@ -44,10 +44,6 @@ h1, p {
   transition: opacity 1s ease 0s;
 }
 
-.bespoke-parent.bespoke-blackout {
-  opacity: 0;
-}
-
 .bespoke-slide {
   opacity: 0;
   position: absolute;
@@ -79,4 +75,8 @@ h1, p {
   opacity: 1;
   pointer-events: auto;
   z-index: 1;
+}
+
+.bespoke-blackout-overlay {
+  transition: opacity 0.5s ease-in;
 }
