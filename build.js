@@ -206,7 +206,7 @@ module.exports = function(opts) {
 },{}]},{},[1])(1)
 });
 /*!
- * bespoke-blackout v1.0.0
+ * bespoke-blackout v1.0.1
  *
  * Copyright 2015, Dan Allen
  * This content is released under the MIT license
@@ -214,7 +214,7 @@ module.exports = function(opts) {
 
 (function(f){if(typeof exports==="object"&&typeof module!=="undefined"){module.exports=f()}else if(typeof define==="function"&&define.amd){define([],f)}else{var g;if(typeof window!=="undefined"){g=window}else if(typeof global!=="undefined"){g=global}else if(typeof self!=="undefined"){g=self}else{g=this}g=(g.bespoke||(g.bespoke = {}));g=(g.plugins||(g.plugins = {}));g.blackout = f()}})(function(){var define,module,exports;return (function e(t,n,r){function s(o,u){if(!n[o]){if(!t[o]){var a=typeof require=="function"&&require;if(!u&&a)return a(o,!0);if(i)return i(o,!0);var f=new Error("Cannot find module '"+o+"'");throw f.code="MODULE_NOT_FOUND",f}var l=n[o]={exports:{}};t[o][0].call(l.exports,function(e){var n=t[o][1][e];return s(n?n:e)},l,l.exports,e,t,n,r)}return n[o].exports}var i=typeof require=="function"&&require;for(var o=0;o<r.length;o++)s(r[o]);return s})({1:[function(require,module,exports){
 module.exports = function() {
-  require('insert-css')('.bespoke-blackout-overlay{position:absolute;top:0;right:0;bottom:0;left:0;background:#101010;opacity:0;visibility:hidden;z-index:1000}.bespoke-blackout .bespoke-blackout-overlay{opacity:1;visibility:visible}');
+  require('insert-css')('.bespoke-blackout-overlay{position:absolute;top:0;right:0;bottom:0;left:0;background-color:#101010;opacity:0;visibility:hidden;z-index:1000}.bespoke-blackout .bespoke-blackout-overlay{opacity:1;visibility:visible}');
   return function(deck) {
     var KEY_B = 66, KEY_DOT = 190, EVT_KEYDOWN = 'keydown',
       blackout = false,
