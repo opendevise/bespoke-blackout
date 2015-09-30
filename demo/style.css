@@ -41,7 +41,6 @@ h1, p {
   bottom: 0;
   pointer-events: none;
   overflow: hidden;
-  transition: opacity 1s ease 0s;
 }
 
 .bespoke-slide {
