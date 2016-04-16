@@ -1,13 +1,15 @@
-var gulp = require('gulp'),
-  pkg = require('./package.json'),
+var pkg = require('./package.json'),
   browserify = require('browserify'),
   buffer = require('vinyl-buffer'),
   concat = require('gulp-concat'),
   del = require('del'),
+  gulp = require('gulp'),
+  util = require('gulp-util'),
   header = require('gulp-header'),
   jshint = require('gulp-jshint'),
   karma = require('karma'),
   pages = require('gh-pages'),
+  path = require('path'),
   rename = require('gulp-rename'),
   replace = require('gulp-replace'),
   source = require('vinyl-source-stream'),
@@ -21,8 +23,8 @@ gulp.task('watch', function() {
   gulp.watch('test/spec/**/*.js', ['test']);
 });
 
-gulp.task('clean', function(done) {
-  del(['dist', 'demo/dist', 'test/coverage'], done);
+gulp.task('clean', function() {
+  return del(['dist', 'demo/dist', 'test/coverage']);
 });
 
 gulp.task('lint', function() {
@@ -39,9 +41,7 @@ gulp.task('test', function(done) {
 });
 
 gulp.task('compile', ['clean'], function() {
-  return browserify({ standalone: 'bespoke.plugins.blackout' })
-    .add('./lib/bespoke-blackout.js')
-    .bundle()
+  return browserify('lib/bespoke-blackout.js', { standalone: 'bespoke.plugins.blackout' }).bundle()
     .pipe(source('bespoke-blackout.js'))
     .pipe(buffer())
     .pipe(header([
@@ -86,10 +86,10 @@ gulp.task('compile:demo:js', ['compile'], function() {
       'demo/demo.js'
   ])
   .pipe(concat('build.js'))
-  //.pipe(uglify())
+  .pipe(uglify())
   .pipe(gulp.dest('demo/dist'));
 });
 
 gulp.task('deploy', ['compile:demo'], function(done) {
-  pages.publish('demo/dist', {}, done);
+  pages.publish(path.join(__dirname, 'demo/dist'), { logger: util.log }, done);
 });

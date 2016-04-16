@@ -1,7 +1,7 @@
 /*!
  * bespoke-blackout v1.0.2-dev
  *
- * Copyright 2015, Dan Allen
+ * Copyright 2016, Dan Allen
  * This content is released under the MIT license
  */
 
@@ -16,6 +16,7 @@ module.exports = function() {
         overlay.className = 'bespoke-blackout-overlay';
         deck.parent.appendChild(overlay);
       },
+      preventDefault = function() { return false; },
       toggleBlackout = function() {
         var parentClasses = deck.parent.classList;
         if (blackout) {
@@ -28,7 +29,6 @@ module.exports = function() {
           blackout = [deck.on('next', preventDefault), deck.on('prev', preventDefault)];
         }
       },
-      preventDefault = function() { return false; },
       isModifierPressed = function(e) {
         return !!(e.ctrlKey || e.shiftKey || e.altKey || e.metaKey);
       },
